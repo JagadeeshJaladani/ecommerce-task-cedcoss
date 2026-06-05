@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gotoshop – Referral Program</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <img id="site-logo" alt="Gotoshop" class="logo-img" />
+      </div>
+      <div class="user-pill">
+        <div class="avatar">JJ</div>
+        <div class="user-info">
+          <span class="user-name">Jagadeesh Jaladani</span>
+          <span class="user-tier">⭐ Gold Member</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-badge">✦ Referral Program 2026</div>
+      <h1>Invite Friends.<br/><em>Earn Together.</em></h1>
+      <p>Share your personal link and earn <strong>20 points</strong> every time a friend joins Gotoshop — India's cheapest, fastest shopping destination.</p>
+      <div class="hero-perks">
+        <div class="perk">⚡ Fast Delivery</div>
+        <div class="perk">💰 Cheap Prices</div>
+        <div class="perk">📦 Vast Products</div>
+      </div>
+    </section>
+
+    <!-- REFERRAL LINK -->
+    <section class="referral-section">
+      <div class="referral-top">
+        <div class="referral-label">Your unique referral link</div>
+        <div class="link-live-badge">
+          <span class="link-dot"></span>
+          <span>Link Active</span>
+        </div>
+      </div>
+      <div class="link-row">
+        <div class="link-display">
+          <input type="text" id="referral-link" readonly />
+        </div>
+        <button id="copy-btn" onclick="copyLink()">
+          <span id="btn-text">Copy Link</span>
+          <span class="btn-icon">⌘</span>
+        </button>
+      </div>
+      <div class="copy-msg" id="copy-msg">✓ Copied to clipboard</div>
+      <div class="share-row">
+        <span class="share-label">Share via</span>
+        <a id="whatsapp-btn" href="#" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
+        <a id="email-btn" href="#" class="share-btn email">✉️ Email</a>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section">
+      <div class="section-tag">Your Performance</div>
+      <div class="stats-row">
+        <div class="stat-card" style="--delay:0s">
+          <div class="stat-top">
+            <span class="stat-label">Friends Referred</span>
+            <span class="stat-glyph">👥</span>
+          </div>
+          <div class="stat-number" id="friends-count">0</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="--pct:40%"></div></div>
+        </div>
+        <div class="stat-card featured" style="--delay:0.1s">
+          <div class="stat-top">
+            <span class="stat-label">Points Earned</span>
+            <span class="stat-glyph">⭐</span>
+          </div>
+          <div class="stat-number" id="points-earned">0</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="--pct:60%"></div></div>
+        </div>
+        <div class="stat-card" style="--delay:0.2s">
+          <div class="stat-top">
+            <span class="stat-label">Credits Earned</span>
+            <span class="stat-glyph">🎁</span>
+          </div>
+          <div class="stat-number" id="credits-earned">₹0</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="--pct:25%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section">
+      <div class="how-header">
+        <div class="section-tag">Simple Process</div>
+        <h2>How It Works</h2>
+      </div>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-num">01</div>
+          <div class="how-line"></div>
+          <div class="how-text">
+            <strong>Copy your link</strong>
+            <span>One click to grab your personal Gotoshop referral URL</span>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-num">02</div>
+          <div class="how-line"></div>
+          <div class="how-text">
+            <strong>Share with friends</strong>
+            <span>Send it via WhatsApp, email, or any social platform</span>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-num">03</div>
+          <div class="how-line"></div>
+          <div class="how-text">
+            <strong>Earn rewards</strong>
+            <span>Get 20 points credited instantly when your friend signs up</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section class="leaderboard-section">
+      <div class="lb-header">
+        <div>
+          <div class="section-tag">Community</div>
+          <h2>Top Referrers</h2>
+          <p>Most active Gotoshop ambassadors this month</p>
+        </div>
+        <div class="lb-live-badge">🏆 Live Rankings</div>
+      </div>
+      <div class="lb-table">
+        <div class="lb-head">
+          <span>Rank</span>
+          <span>Name</span>
+          <span>Referred</span>
+          <span>Points</span>
+        </div>
+        <div id="leaderboard-body"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img id="footer-logo" alt="Gotoshop" class="footer-logo-img" />
+        <span class="footer-tagline">Cheap · Fast · Vast</span>
+      </div>
+      <span class="footer-right">Built by Jagadeesh Jaladani · Cedcoss x LPU 2026</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
