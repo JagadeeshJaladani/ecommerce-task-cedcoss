@@ -3,29 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gotoshop – Referral Program</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>Gotoshop – Earn Rewards by Referring Friends</title>
+  <meta name="description" content="Join Gotoshop's referral program. Share your unique link, earn 20 points per friend, and climb the leaderboard!"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="bg-orbs">
+  <!-- Animated background particles -->
+  <div class="bg-orbs" aria-hidden="true">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
   </div>
 
-  <!-- HEADER -->
-  <header>
+  <!-- Header -->
+  <header id="main-header">
     <div class="header-inner">
+      <button class="back-btn" onclick="history.back()" aria-label="Go back" title="Go Back">&#8592;</button>
       <div class="logo">
-        <img id="site-logo" alt="Gotoshop" class="logo-img" />
+        <img src="logo.png" alt="Gotoshop" class="logo-img" id="site-logo"
+             onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'"/>
+        <span id="logo-fallback" class="logo-fallback" style="display:none">
+          <span class="logo-icon">🛒</span>
+          Go to<span class="logo-accent">shop</span>
+        </span>
       </div>
-      <div class="user-pill">
-        <div class="avatar">JJ</div>
-        <div class="user-info">
-          <span class="user-name">Jagadeesh Jaladani</span>
-          <span class="user-tier">⭐ Gold Member</span>
+      <nav class="header-nav">
+        <a href="#referral-section" class="nav-link">My Link</a>
+        <a href="#stats-section" class="nav-link">Stats</a>
+        <a href="#leaderboard-section" class="nav-link">Leaderboard</a>
+      </nav>
+      <div class="user-info" id="profile-menu-wrap">
+        <div class="profile-trigger" id="profile-trigger" onclick="toggleProfileMenu()" aria-haspopup="true" aria-expanded="false">
+          <div class="avatar" id="user-avatar">JJ</div>
+          <div class="user-details">
+            <span class="username">Jagadeesh Jaladani</span>
+            <span class="user-badge">⭐ Pro Referrer</span>
+          </div>
+          <span class="dropdown-caret" id="profile-caret">▾</span>
+        </div>
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="dropdown-header">
+            <div class="dropdown-avatar">JJ</div>
+            <div>
+              <div class="dropdown-name">Jagadeesh Jaladani</div>
+              <div class="dropdown-email">jaga2026@gotoshop.com</div>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">👤 My Profile</a>
+          <a href="#" class="dropdown-item">⚙️ Settings</a>
+          <a href="#" class="dropdown-item">🎁 My Rewards</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-logout" onclick="handleLogout(event)">🚪 Logout</a>
         </div>
       </div>
     </div>
@@ -33,20 +67,49 @@
 
   <main>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-badge">✦ Referral Program 2026</div>
-      <h1>Invite Friends.<br/><em>Earn Together.</em></h1>
-      <p>Share your personal link and earn <strong>20 points</strong> every time a friend joins Gotoshop — India's cheapest, fastest shopping destination.</p>
-      <div class="hero-perks">
-        <div class="perk">⚡ Fast Delivery</div>
-        <div class="perk">💰 Cheap Prices</div>
-        <div class="perk">📦 Vast Products</div>
+    <!-- Hero -->
+    <section class="hero" id="hero-section">
+      <div class="hero-content">
+        <div class="hero-badge">✦ Referral Program 2026</div>
+        <h1>Refer Friends.<br/><em>Earn Together.</em></h1>
+        <p>Share your unique referral link and earn <strong>20 points</strong> for every friend who joins Gotoshop. Redeem points for real ₹ credits!</p>
+        <div class="hero-perks">
+          <div class="perk">⚡ Instant Points</div>
+          <div class="perk">💰 Real ₹ Credits</div>
+          <div class="perk">📦 No Limits</div>
+        </div>
+        <div class="hero-cta-group">
+          <a href="#referral-section" class="btn-primary">Get My Link →</a>
+          <a href="#leaderboard-section" class="btn-secondary">View Leaderboard</a>
+        </div>
+      </div>
+      <div class="hero-floats" aria-hidden="true">
+        <div class="floating-card fc1">
+          <span>🎁</span>
+          <div>
+            <div class="fc-label">Credits Earned</div>
+            <div class="fc-value" id="hero-credits">₹120</div>
+          </div>
+        </div>
+        <div class="floating-card fc2">
+          <span>👥</span>
+          <div>
+            <div class="fc-label">Friends Referred</div>
+            <div class="fc-value" id="hero-friends">12</div>
+          </div>
+        </div>
+        <div class="floating-card fc3">
+          <span>⭐</span>
+          <div>
+            <div class="fc-label">Total Points</div>
+            <div class="fc-value" id="hero-points">240</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- REFERRAL LINK -->
-    <section class="referral-section">
+    <!-- Referral Link Card -->
+    <section class="referral-section" id="referral-section">
       <div class="referral-top">
         <div class="referral-label">Your unique referral link</div>
         <div class="link-live-badge">
@@ -56,23 +119,25 @@
       </div>
       <div class="link-row">
         <div class="link-display">
-          <input type="text" id="referral-link" readonly />
+          <span class="link-prefix-icon">🌐</span>
+          <input type="text" id="referral-link" readonly aria-label="Your referral link"/>
         </div>
-        <button id="copy-btn" onclick="copyLink()">
-          <span id="btn-text">Copy Link</span>
-          <span class="btn-icon">⌘</span>
+        <button id="copy-btn" onclick="copyLink()" aria-label="Copy referral link">
+          <span id="copy-btn-text">Copy Link</span>
+          <span class="btn-icon" id="copy-btn-icon">⌘</span>
         </button>
       </div>
-      <div class="copy-msg" id="copy-msg">✓ Copied to clipboard</div>
+      <div class="copy-msg" id="copy-msg" role="alert" aria-live="polite">✓ Copied to clipboard! Share it now.</div>
       <div class="share-row">
         <span class="share-label">Share via</span>
-        <a id="whatsapp-btn" href="#" target="_blank" class="share-btn whatsapp">📲 WhatsApp</a>
-        <a id="email-btn" href="#" class="share-btn email">✉️ Email</a>
+        <button class="share-btn whatsapp" onclick="shareWhatsApp()" aria-label="Share on WhatsApp">📲 WhatsApp</button>
+        <button class="share-btn twitter" onclick="shareTwitter()" aria-label="Share on Twitter">🐦 Twitter</button>
+        <button class="share-btn copylink" onclick="copyLink()" aria-label="Copy link">🔗 Copy</button>
       </div>
     </section>
 
-    <!-- STATS -->
-    <section class="stats-section">
+    <!-- Stats -->
+    <section class="stats-section" id="stats-section" aria-label="Your referral statistics">
       <div class="section-tag">Your Performance</div>
       <div class="stats-row">
         <div class="stat-card" style="--delay:0s">
@@ -102,8 +167,8 @@
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="how-section">
+    <!-- How It Works -->
+    <section class="how-section" id="how-section">
       <div class="how-header">
         <div class="section-tag">Simple Process</div>
         <h2>How It Works</h2>
@@ -114,7 +179,7 @@
           <div class="how-line"></div>
           <div class="how-text">
             <strong>Copy your link</strong>
-            <span>One click to grab your personal Gotoshop referral URL</span>
+            <span>One click to grab your personal Gotoshop referral URL from above</span>
           </div>
         </div>
         <div class="how-step">
@@ -122,7 +187,7 @@
           <div class="how-line"></div>
           <div class="how-text">
             <strong>Share with friends</strong>
-            <span>Send it via WhatsApp, email, or any social platform</span>
+            <span>Send it via WhatsApp, Twitter, email, or any social platform</span>
           </div>
         </div>
         <div class="how-step">
@@ -130,19 +195,19 @@
           <div class="how-line"></div>
           <div class="how-text">
             <strong>Earn rewards</strong>
-            <span>Get 20 points credited instantly when your friend signs up</span>
+            <span>Get 20 points (= ₹10 credit) instantly when your friend signs up</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- LEADERBOARD -->
-    <section class="leaderboard-section">
+    <!-- Leaderboard -->
+    <section class="leaderboard-section" id="leaderboard-section">
       <div class="lb-header">
         <div>
           <div class="section-tag">Community</div>
-          <h2>Top Referrers</h2>
-          <p>Most active Gotoshop ambassadors this month</p>
+          <h2>Top Referrers This Month</h2>
+          <p>Most active Gotoshop ambassadors — updated live</p>
         </div>
         <div class="lb-live-badge">🏆 Live Rankings</div>
       </div>
@@ -152,6 +217,7 @@
           <span>Name</span>
           <span>Referred</span>
           <span>Points</span>
+          <span>Badge</span>
         </div>
         <div id="leaderboard-body"></div>
       </div>
@@ -159,14 +225,19 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <div class="footer-inner">
       <div class="footer-left">
-        <img id="footer-logo" alt="Gotoshop" class="footer-logo-img" />
-        <span class="footer-tagline">Cheap · Fast · Vast</span>
+        <img src="logo.png" alt="Gotoshop" class="footer-logo-img"
+             onerror="this.style.display='none';document.getElementById('footer-logo-fallback').style.display='inline'"/>
+        <span id="footer-logo-fallback" class="footer-logo-text" style="display:none">🛒 Gotoshop</span>
+        <span class="footer-tagline">Refer · Earn · Repeat</span>
       </div>
-      <span class="footer-right">Built by Jagadeesh Jaladani · Cedcoss x LPU 2026</span>
+      <div class="footer-right">
+        <p>Built by <strong>Jagadeesh Jaladani</strong> · Cedcoss </p>
+        <p class="footer-sub">© 2026 Gotoshop. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
